@@ -28,7 +28,7 @@
 	\begin{proof}[Solution]
 		First, we integrate the left side to get the expression into geometric series form. 
 		\begin{align*}
-			\int \sum_{n=0}^{\infty} ne^{-An} dA =  \sum_{n=0}^{\infty} e^{-An}
+			\int \sum_{n=0}^{\infty} ne^{-An} dA =  \sum_{n=0}^{\infty} -e^{-An}
 		\end{align*}
 		
 		Next, recall that the sum of a geometric series is $\sum_{n=0}^{\infty} ar^{n} = \frac{a}{1-r}$. Using this fact, the previous result can be rewritten,
@@ -41,5 +41,51 @@
 			\end{align*}
 	\end{proof}
 	
+	\begin{problem}{1.2}
+		In Planck’s model of blackbody radiation, the energy in a given frequency $\omega$ of electromagnetic radiation is distributed randomly over all numbers of the form $n \hbar \omega$, where $n = 0, 1, 2, . . . $. Specifically, the likelihood of finding energy $n \hbar \omega$ is postulated to be\\
+		\begin{align*}
+			p(E=n \hbar \omega) = \frac{1}{Z}e^{-\beta n \hbar \omega},\\
+			Z = \frac{1}{1-e^{-\beta n \hbar \omega}}
+		\end{align*}
+		Where $Z$ is a normalization constant, which is chosen so that the sum over $n$ of the probabilities is 1. Here $\beta = \frac{1}{k_{B}T}$, where T is the temperature and $k_{B}$ is Boltzman's constant. The expected value of the energy, denoted $<E>$, is defined to be
+		\begin{align*}
+			<E> = \frac{1}{Z} \sum_{n=0}^{\infty} (n \hbar \omega) e^{-\beta n \hbar \omega}.
+		\end{align*}
+		
+		(a) using exercise 1, show that
+		\begin{align*}
+			<E> = \frac{\hbar \omega}{e^{\beta \hbar \omega} - 1}.
+		\end{align*}
+		
+		(b) Show that $<E>$ behaves like $\frac{1}{\beta} = k_B T$ for small $\omega$, but that
+		$<E>$ decays exponentially as $\omega$ tends to infinity.
+	\end{problem}
+	
+	\begin{proof}
+		(a) From exercise 1, we can rewrite the sum term as
+		\begin{align*}
+			\frac{\hbar \omega e^{-\hbar \omega \beta}}{(1-e^{-\hbar \omega \beta})^{2}}
+		\end{align*}
+		Multiply this by $\frac{1}{Z} = 1-e^{-\hbar \omega \beta}$.
+		\begin{align*}
+			1-e^{-\hbar \omega \beta}\frac{\hbar \omega e^{-\hbar \omega \beta}}{(1-e^{-\hbar \omega \beta})^{2}}\\
+			=\frac{\hbar \omega e^{-\hbar \omega \beta}}{1-e^{-\hbar \omega \beta}}\\
+			=\frac{\hbar \omega}{e^{\hbar \omega \beta}-1}
+		\end{align*}
+		
+		(b) Using the Taylor series expansion of $e^{x}$, we can rewrite $<E>$
+		\begin{align*}
+			\frac{\hbar \omega}{e^{\hbar \omega \beta}-1}\\
+			= \frac{\hbar \omega}{(1 + \hbar \omega \beta + \sum_{n=2}^{\infty} \frac{(\hbar \omega \beta)^{n}}{n}) -1}\\
+			=\frac{1}{\beta + \sum_{n=2}^{\infty} \frac{(\hbar \omega)^{n-1} \beta^{n}}{n}}
+		\end{align*}
+		as $\omega$ approaches $0$, the sum disappears and the fraction approaches $\frac{1}{\beta}$.\\
+		It is easy to find the limit of $<E>$ as $\omega$ approaches $\infty$ using L'Hospital's rule
+		\begin{align*}
+			\frac{\hbar \omega}{e^{\hbar \omega \beta}-1} \overset{\mathrm{H}}{=}
+			\frac{\hbar}{\hbar \beta e^{\hbar \omega \beta}}
+		\end{align*}
+	\end{proof}
+
 	
 \end{document}
