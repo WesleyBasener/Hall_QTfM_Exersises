@@ -1,0 +1,80 @@
+\documentclass[10pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb, graphicx, multicol, array}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+		\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+	
+	\title{Exercises from Chapter 3}
+	\author{Wesley Basener}
+	\maketitle
+	
+	\begin{problem}{3.1}
+	Suppose that $\phi (t)$ and  $\psi (t)$ are differentiable functions with values in
+	a Hilbert space $\mathbf{H}$, meaning that the limit
+	\begin{align*}
+		\frac{d \phi}{dt} := \lim_{h \to 0} \frac{\phi (t+h) - \phi (t)}{h}
+	\end{align*}
+	exists in the norm topology of $\bold{H}$ and similarly for $\psi (t)$. show that
+	\begin{align*}
+		\langle \phi (t), \psi (t) \rangle = \langle \frac{d\phi}{dt}, \psi (t) \rangle + \langle \phi (t), \frac{d \psi}{dt} \rangle.
+	\end{align*}
+	\end{problem}
+	
+	\begin{proof}
+	Recall the standard definition of the inner product on $L^{2}(\mathbb{R})$:
+	\begin{align*}
+		\langle \phi (t), \psi (t) \rangle = \int \overline{\phi(t)} \psi(t) dt
+	\end{align*}
+	So, the derivative of the inner product is just
+	\begin{align*}
+		\overline{\phi(t)} \psi(t)
+	\end{align*}
+	Also, recall integration by parts $\int v du = dv u - \int u dv$ Adding the second integral to both sides, we can use this to rewrite the above as
+	\begin{align*}
+		\int \frac{d\phi}{dt}, \psi (t) dt + \int \phi (t), \frac{d \psi}{dt} dt. 
+		= \langle \phi (t), \psi (t) \rangle = \langle \frac{d\phi}{dt}, \psi (t) \rangle + \langle \phi (t), \frac{d \psi}{dt} \rangle. 
+	\end{align*}	
+    \end{proof}	
+    
+    \begin{problem}{3.2} 
+    	Suppose $A$ and $B$ are operators on a finite-dimensional Hilbert space
+    	and suppose that $AB - BA = cI$ 
+    	for some constant $c$. Show that
+    	$c = 0$.
+	\end{problem}
+	\begin{proof}
+		$A$ and $B$ are operators on a finite dimensional Hilbert space, which we can assume has a basis. So, $A$ and $B$ can be represented by matrices and they therefore have a trace. The trace of the sum of two matrices is the same as the sum of the traces of each matrix. Furthermore, the trace of the product of two matrices is the same as the product of their traces. Therefore, denoting n as the dimesnion of the Hilbert space, $n*c = tr(cI) = tr(AB - BA) = tr(AB) - tr(BA) = tr(A)tr(B) - tr(B)tr(A) = 0$ Thus, $c=0$. 
+	\end{proof}
+	\begin{problem}{3.3}
+		If $A$ is a bounded operator on a Hilbert space $\bold(H)$, then there exists a
+		unique bounded operator $A*$ on $\bold(H)$ satisfying  $\langle \phi, A \psi \rangle = \langle A^{*} \phi, \psi \rangle$ for
+		all $\phi$ and $\psi$ in $\bold(H)$. (Appendix A.4.3.) The operator $A^{*}$ is called the
+		adjoint of $A$, and $A$ is called self-adjoint if $A^{*} = A$.\\
+		\\
+		(a) Show that for any bounded operator $A$ and constant $c \in C$, we
+		have $(cA)^{*} = \bar{c}A^{*}$ , where $\bar{c}$ is the complex conjugate of $c$.\\
+		\\
+		(b) Show that if $A$ and $B$ are self-adjoint, then the operator
+		\begin{align*}
+			\frac{1}{i \hbar}[A, B]
+		\end{align*}
+		is also self-adjoint.
+	\end{problem}
+	
+	\begin{proof}
+		For a, simply work through the definitions of inner products,
+		\begin{align*}
+			\langle \phi, cA \psi \rangle = c\langle \phi, A \psi \rangle = c\langle A^{*} \phi, \psi \rangle = \langle \bar{c}A^{*} \phi, \psi \rangle
+		\end{align*}
+		For b, $A$ and $B$ are self-adjoint. It can easily be shown that they commute. $\langle \phi, AB \psi \rangle = \langle  A \phi, B \psi \rangle = BA \langle   \phi,  \psi \rangle = \langle \phi, BA \psi \rangle$ Therefore, $[A,B]$ is zero and the operator is trivially self-adjoint.
+	\end{proof}
+	
+	
+\end{document}
